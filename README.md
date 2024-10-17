@@ -56,6 +56,23 @@ projeto_dashboard_ck/
 - **requirements.txt**: Lista todas as bibliotecas externas necessárias para o projeto, como Dash, Plotly, Pandas, entre outras, que precisam ser instaladas para o aplicativo funcionar.
 
 
+## Instalação das Dependências
+
+Para garantir que todas as bibliotecas e pacotes necessários para o projeto sejam instalados corretamente, siga os passos abaixo:
+
+1. **Certifique-se de que o Python está instalado**:
+   Antes de instalar as dependências, verifique se você tem o Python 3.x instalado em sua máquina. Caso contrário, siga as instruções para instalação no [site oficial do Python](https://www.python.org/downloads/).
+
+2. **Instale as dependências a partir do arquivo `requirements.txt`**:
+   Após clonar o repositório ou baixar o projeto, navegue até o diretório principal do projeto no terminal e execute o seguinte comando:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+   Esse comando irá instalar todas as bibliotecas listadas no arquivo `requirements.txt`, garantindo que o ambiente esteja configurado corretamente para executar o dashboard.
+
+
 
 ## Construção da Imagem Docker
 
