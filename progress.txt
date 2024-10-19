@@ -1,0 +1,13 @@
+Iniciando download do repositório...
+Cloning into '/app/repo'...
+log4j:WARN No appenders could be found for logger (com.github.mauricioaniche.ck.CK).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+Metrics extracted!!!
+Listando arquivos em /app/output:
+total 2268
+-rw-r--r-- 1 root root   86435 Oct 18 23:49 outputclass.csv
+-rw-r--r-- 1 root root  453422 Oct 18 23:49 outputfield.csv
+-rw-r--r-- 1 root root  627978 Oct 18 23:49 outputmethod.csv
+-rw-r--r-- 1 root root 1143952 Oct 18 23:49 outputvariable.csv
+Análise concluída com sucesso.

@@ -1,4 +1,5 @@
 # app.py
+
 import dash
 from dash import html
 from components.header import Header
