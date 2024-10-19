@@ -1,6 +1,6 @@
 # Framework Dash para construção de dashboards interativos
-dash==2.14.1
-dash-ag-grid==2.1.1
+dash==2.14.2
+dash-ag-grid==31.0.1
 
 # Plotly para gráficos interativos usados no Dash
 plotly==5.15.0

@@ -1,3 +1,5 @@
+# components/tables.py
+
 import pandas as pd
 import dash_ag_grid as dag
 
