@@ -1,93 +1,112 @@
-# SmartMetricView
+# Projeto SmartMetric View
 
+Este projeto implementa um dashboard de análise de dados utilizando o framework Dash, baseado em dados de análise estática de códigos Java pela ferramenta CK.
 
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Estrutura do Projeto
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/smartmetricview/smartmetricview.git
-git branch -M main
-git push -uf origin main
+projeto_dashboard_ck/
+│
+├── app.py              # Arquivo principal do Dash, inicializa o app e define o layout global
+│
+├── assets/             # Diretório para arquivos estáticos como CSS, JS e imagens
+│   ├── style.css       # Folha de estilos CSS para personalizar a aparência
+│   └── logo.png        # Logotipo da aplicação, se necessário
+│
+├── components/         # Componentes reutilizáveis da Visão
+│   ├── charts.py       # Scripts para criar gráficos com Plotly
+│   └── tables.py       # Scripts para gerar tabelas interativas
+│
+├── controllers/        # Controladores que manipulam a interação entre o Modelo e a Visão
+│   ├── callbacks.py    # Callbacks do Dash que respondem a eventos da interface
+│   └── router.py       # Roteamento de eventos e chamadas de controle
+│
+├── models/             # Modelo de dados e lógica de negócio
+│   ├── project.py      # Classe para gerenciar informações dos projetos
+│   ├── analysis.py     # Classe para gerenciar informações das análises
+│   └── metric.py       # Classe para gerenciar as métricas específicas
+│
+├── services/           # Serviços auxiliares para operações comuns
+│   ├── data_loader.py  # Carrega e processa dados da ferramenta CK
+│   └── report_generator.py # Gera relatórios com base nas análises
+│
+├── tests/              # Testes unitários e de integração
+│   ├── test_models.py  # Testes para as classes do modelo
+│   ├── test_views.py   # Testes para componentes da interface
+│   └── test_controllers.py # Testes para a lógica de controle
+│
+└── requirements.txt    # Dependências do projeto
 ```
+## Descrição dos Componentes Principais
 
-## Integrate with your tools
+- **app.py**: Este é o ponto de entrada do aplicativo Dash. Ele configura o servidor e define o layout principal do dashboard, conectando todos os componentes e controladores.
 
-- [ ] [Set up project integrations](https://gitlab.com/smartmetricview/smartmetricview/-/settings/integrations)
+- **assets/**: Guarda recursos estáticos como CSS para personalização e imagens. É automaticamente reconhecido pelo Dash, que aplica estilos e imagens conforme necessário.
 
-## Collaborate with your team
+- **components/**: Contém scripts Python que definem componentes reutilizáveis da interface do usuário, como gráficos e tabelas, que podem ser importados e usados em várias partes do aplicativo.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+- **controllers/**: Armazena os controladores que fazem a mediação entre a entrada do usuário (eventos) e a atualização dos modelos e das visualizações. Inclui os callbacks que são cruciais para a interatividade do Dash.
 
-## Test and Deploy
+- **models/**: Define as classes Python que encapsulam a lógica de negócio e os dados do aplicativo. Cada classe (Projeto, Análise, Métrica) é responsável por uma parte específica da lógica e dados.
 
-Use the built-in continuous integration in GitLab.
+- **services/**: Contém serviços que são usados em várias partes do aplicativo, como carregamento de dados e geração de relatórios, isolando estas funcionalidades para facilitar a manutenção e reutilização.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- **tests/**: Inclui todos os testes unitários e de integração para assegurar que as diferentes partes do aplicativo funcionam corretamente juntas e isoladamente.
 
-***
+- **requirements.txt**: Lista todas as bibliotecas externas necessárias para o projeto, como Dash, Plotly, Pandas, entre outras, que precisam ser instaladas para o aplicativo funcionar.
 
-# Editing this README
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+## Instalação das Dependências
 
-## Suggestions for a good README
+Para garantir que todas as bibliotecas e pacotes necessários para o projeto sejam instalados corretamente, siga os passos abaixo:
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+1. **Certifique-se de que o Python está instalado**:
+   Antes de instalar as dependências, verifique se você tem o Python 3.x instalado em sua máquina. Caso contrário, siga as instruções para instalação no [site oficial do Python](https://www.python.org/downloads/).
 
-## Name
-Choose a self-explaining name for your project.
+2. **Instale as dependências a partir do arquivo `requirements.txt`**:
+   Após clonar o repositório ou baixar o projeto, navegue até o diretório principal do projeto no terminal e execute o seguinte comando:
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+   Esse comando irá instalar todas as bibliotecas listadas no arquivo `requirements.txt`, garantindo que o ambiente esteja configurado corretamente para executar o dashboard.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## Construção da Imagem Docker
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Este projeto utiliza uma imagem Docker para encapsular o ambiente de execução necessário para o dashboard, garantindo que ele possa ser executado de forma consistente em qualquer máquina com Docker.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+### Pré-requisitos
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Antes de construir a imagem Docker, certifique-se de que o Docker está instalado em seu sistema. As instruções para instalação do Docker podem ser encontradas no [site oficial do Docker](https://docs.docker.com/get-docker/).
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+### Passos para Construção da Imagem
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+1. **Navegar até o Diretório do Projeto**:
+   Abra um terminal e navegue até a pasta _docker_ do projeto SmartMetric View, onde o Dockerfile está localizado.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+2. **Construir a Imagem**:
+   Execute o seguinte comando no terminal para construir a imagem Docker. Este comando lê o Dockerfile no diretório atual e constrói a imagem.
 
-## License
-For open source projects, say how it is licensed.
+   ```bash
+   docker build -t ck-analyzer .
+   ```
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+   Este comando executa as instruções definidas no Dockerfile, que incluem baixar a imagem base, instalar as dependências necessárias, copiar os arquivos do projeto para dentro da imagem e configurar o ambiente de execução.
+
+3. **Verificar a Imagem**:
+   Após a construção ser completada, você pode verificar se a imagem foi criada com sucesso listando todas as imagens Docker disponíveis:
+
+   ```bash
+   docker images
+   ```
+
+   Procure por `ck-analyzer` na lista para confirmar que a imagem está pronta para uso.
+
+### Utilização da Imagem
+
+A imagem Docker construída está pronta para ser usada para iniciar o servidor do dashboard Dash. As instruções de execução da imagem Docker são parte do sistema de implantação e não são necessárias para o processo de construção.
+
+
