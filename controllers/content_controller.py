@@ -1,5 +1,3 @@
-#controllers/content_controller.py
-
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 from services.docker_service import run_ck_analysis
@@ -24,6 +22,8 @@ class ContentController:
         )
         def execute_analysis(n_clicks, url):
             if n_clicks > 0 and url:
+                # Executa a análise CK
                 run_ck_analysis(url)
+                # Retorna as tabelas geradas
                 return create_tables()  # Cria as tabelas a partir dos dados gerados
             raise PreventUpdate

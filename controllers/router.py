@@ -1,8 +1,7 @@
-# controllers/router.py
-
 from dash.dependencies import Input, Output
 from components.content_view import ContentView
 from components.feedback_view import FeedbackView
+from controllers.content_controller import ContentController
 
 class Router:
     """
@@ -16,6 +15,7 @@ class Router:
         
         :param app: Instância do aplicativo Dash.
         """
+        # Callback para a navegação entre as páginas
         @app.callback(
             Output('page-content', 'children'),
             [Input('url', 'pathname')]
@@ -25,3 +25,6 @@ class Router:
                 return FeedbackView().layout()  # Retorna a página de feedback
             else:
                 return ContentView().layout()  # Retorna a página principal (análise CK)
+        
+        # Registra os callbacks do ContentController
+        ContentController.register_callbacks(app)  # Certifique-se de que esse método foi chamado
