@@ -1,9 +1,3 @@
-<<<<<<< Updated upstream
-#components/content.py
-=======
-#components/content_view.py
-
->>>>>>> Stashed changes
 from dash import html, dcc
 
 class ContentView:
