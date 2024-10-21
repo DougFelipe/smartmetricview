@@ -1,8 +1,16 @@
+#services/data_service.py
+
 import pandas as pd
 import os
 from components.tables import create_table_from_dataframe
+from dash import html
 
 def create_tables():
+    """
+    Carrega os arquivos CSV gerados pela ferramenta CK e cria tabelas AG Grid.
+
+    :return: Lista de tabelas AG Grid geradas a partir dos arquivos CSV.
+    """
     try:
         base_path = os.path.join(os.getcwd(), 'output')
         files = ['outputclass.csv', 'outputfield.csv', 'outputmethod.csv', 'outputvariable.csv']

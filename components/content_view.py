@@ -1,12 +1,17 @@
+#components/content.py
 from dash import html, dcc
 
-class Content:
-    def __init__(self, app):
-        # Registrar callbacks em outro módulo
-        from controllers.content_controller import register_callbacks
-        register_callbacks(app)
+class ContentView:
+    """
+    Classe responsável pela interface de entrada para a análise CK.
+    """
 
-    def __call__(self):
+    def layout(self):
+        """
+        Retorna o layout da página de análise CK.
+        
+        :return: html.Div com o conteúdo da página.
+        """
         return html.Div([
             html.Div([
                 html.P("Insira o URL do repositório GitHub para análise com a ferramenta CK:"),
