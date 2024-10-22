@@ -1,3 +1,5 @@
+#components/content_view.py
+
 from dash import html, dcc
 
 class ContentView:

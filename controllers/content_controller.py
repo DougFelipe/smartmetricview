@@ -1,6 +1,7 @@
 from dash.dependencies import Input, Output, State
 from services.docker_service import run_ck_analysis
 from components.results import ResultsView
+from dash.exceptions import PreventUpdate
 
 class ContentController:
     @staticmethod

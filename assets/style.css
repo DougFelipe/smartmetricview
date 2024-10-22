@@ -278,11 +278,77 @@ details {
 .ag-theme-alpine {
     width: 60%;  /* Agora as tabelas ocupam a mesma largura que o campo de URL (60%) */
     max-width: 60%;  /* Garante que as tabelas não ultrapassem o limite de 60% */
-    min-width: 1500px;  /* Define uma largura mínima para evitar que as tabelas fiquem muito estreitas */
+    min-width: 1200px;  /* Define uma largura mínima para evitar que as tabelas fiquem muito estreitas */
     height: auto;
 }
 
 /* Ajustes gerais para evitar scroll horizontal */
 html, body {
     overflow-x: hidden;
+}
+
+
+/* Estilos para o cartão de feedback */
+.feedback-card {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feedback-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+.feedback-input,
+.feedback-dropdown,
+.feedback-textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.feedback-label {
+    margin-top: 15px;
+    display: block;
+    font-weight: bold;
+}
+
+.feedback-radio-items {
+    margin-top: 10px;
+}
+
+.feedback-radio-items label {
+    margin-bottom: 5px;
+}
+
+.feedback-checklist {
+    margin: 15px 0;
+}
+
+.feedback-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.feedback-button:hover {
+    background-color: #0056b3;
+}
+
+.feedback-response {
+    margin-top: 20px;
+    font-size: 16px;
 }
