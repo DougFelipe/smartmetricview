@@ -1,22 +1,23 @@
 # app.py
 from dash import Dash, html, dcc
-from components.header import Header
-from controllers.router import Router
+from components.header import Header  # Importa o Header]
+from components.navbar import Navbar
+from controllers.router import routes  # Importa a função de registro de rotas
 
 app = Dash(__name__, suppress_callback_exceptions=True)
 
 # Inicializa o header
-header = Header()
+header = Header(app)
+navbar = Navbar()
 
-# Configura o layout principal
 app.layout = html.Div([
-    header(),  # Cabeçalho fixo no topo
-    dcc.Location(id='url', refresh=False),  # Para controlar as páginas com base no caminho
-    html.Div(id='page-content')  # Onde as páginas serão renderizadas
+    header(),
+    navbar(),
+    dcc.Location(id='url', refresh=False),
+    html.Div(id='page-content')
 ])
 
-# Registro das rotas no aplicativo
-Router.register_callbacks(app)
+routes(app)
 
 if __name__ == '__main__':
     app.run_server(debug=True)

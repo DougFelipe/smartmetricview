@@ -6,7 +6,7 @@ dash-ag-grid==31.0.1
 plotly==5.15.0
 
 # Pandas para manipulação e análise de dados
-pandas==2.1.1
+pandas==2.2.3
 
 # Biblioteca de suporte para callbacks no Dash
 dash-bootstrap-components==1.4.0
