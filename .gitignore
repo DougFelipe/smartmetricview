@@ -1,6 +1,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/python
 # Edit at https://www.toptal.com/developers/gitignore?templates=python
 
+## Pastas do Projeto ##
+cloned_repos/
+output/
+
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/

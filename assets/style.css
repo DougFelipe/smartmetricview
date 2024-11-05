@@ -91,6 +91,50 @@ body {
     background-color: #0095DB;       
 }
 
+
+/* Estilização do Content Card LLM */
+.content-card-llm {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 20px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.content-card-llm:hover {
+    transform: translateY(-5px);
+}
+
+#github-url-llm {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 1em;
+}
+
+#execute-button-llm {
+    background-color: #164194;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1em;
+}
+
+#execute-button-llm:hover {
+    background-color: #0095DB;
+}
+
+
+
 /* Estilização tabelas */
 .table-container {
     margin: 40px 0; 

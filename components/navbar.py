@@ -11,6 +11,7 @@ class Navbar:
         """
         self.links = [
             {'name': 'Análise CK', 'path': '/'},
+            {'name': 'Analise LLM', 'path': '/llm'},
             {'name': 'Feedback', 'path': '/feedback'},
         ]
 
