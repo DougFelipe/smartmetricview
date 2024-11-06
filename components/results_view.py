@@ -23,10 +23,10 @@ class ResultsView:
         accordion_items = [
             dbc.AccordionItem(
                 table,
-                title=file_name,
+                title=file_name,  # Agora usa o nome descritivo fornecido por create_tables
                 className="accordion-item"
             )
-            for file_name, table in tables  # Agora deve funcionar corretamente com a lista de tuplas (file_name, table)
+            for file_name, table in tables
         ]
 
         return html.Div([
@@ -34,7 +34,8 @@ class ResultsView:
             dbc.Accordion(
                 accordion_items, 
                 start_collapsed=True,  # Inicia com todos os itens fechados
-                flush=True,  # Remove os contornos ao redor do acordeão
+                always_open=True,
+                flush=False,  # Define se a borda ao redor do acordeão deve ser removida
                 className="table-accordion"
             )
         ], className="results-wrapper")

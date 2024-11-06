@@ -8,13 +8,22 @@ from components.tables import create_table_from_dataframe
 def create_tables():
     """
     Carrega os arquivos CSV gerados pela ferramenta CK e cria tabelas AG Grid,
-    retornando uma lista de tuplas com o nome do arquivo e a tabela gerada.
+    retornando uma lista de tuplas com o nome descritivo e a tabela gerada.
 
-    :return: Lista de tuplas (nome do arquivo, tabela).
+    :return: Lista de tuplas (nome descritivo, tabela).
     """
     try:
         base_path = os.path.join(os.getcwd(), 'output')
-        files = ['outputclass.csv', 'outputfield.csv', 'outputmethod.csv', 'outputvariable.csv']
+        
+        # Dicionário de mapeamento para nomes descritivos
+        file_name_map = {
+            'outputclass.csv': 'Métricas de Classe',
+            'outputfield.csv': 'Métricas de Campo',
+            'outputmethod.csv': 'Métricas de Método',
+            'outputvariable.csv': 'Métricas de Variável'
+        }
+        
+        files = file_name_map.keys()  # Os arquivos a serem carregados com base nas chaves do dicionário
         tables = []
         
         for file in files:
@@ -22,7 +31,10 @@ def create_tables():
             if os.path.exists(file_path):
                 df = pd.read_csv(file_path)
                 table = create_table_from_dataframe(df, table_id=file)
-                tables.append((file, table))  # Adiciona o nome do arquivo junto com a tabela gerada
+                
+                # Use o nome amigável do dicionário ao invés do nome do arquivo
+                friendly_name = file_name_map[file]
+                tables.append((friendly_name, table))
         
         return tables
     
