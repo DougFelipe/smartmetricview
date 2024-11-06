@@ -93,6 +93,7 @@ body {
 
 
 /* Estilização do Content Card LLM */
+.content-card-llm-ck,
 .content-card-llm {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -103,11 +104,13 @@ body {
     text-align: center;
     transition: transform 0.2s;
 }
-
+.content-card-llm-ck:hover,
 .content-card-llm:hover {
     transform: translateY(-5px);
 }
 
+#description-project,
+#github-url-llm-ck,
 #github-url-llm {
     width: 100%;
     padding: 10px;
@@ -118,6 +121,7 @@ body {
     font-size: 1em;
 }
 
+#execute-button-llm-ck,
 #execute-button-llm {
     background-color: #164194;
     color: white;
@@ -129,6 +133,7 @@ body {
     font-size: 1em;
 }
 
+#execute-button-llm-ck:hover,
 #execute-button-llm:hover {
     background-color: #0095DB;
 }
