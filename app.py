@@ -3,7 +3,6 @@ from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 from components.header import Header
 from components.navbar import Navbar
-from components.loginForm import LoginForm
 from controllers.router import routes
 from services.auth_services import AuthService
 from flask import Flask

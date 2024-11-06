@@ -1,41 +1,44 @@
-# components/results_view.py
-
-from dash import html
+from dash import html, dcc
 import dash_bootstrap_components as dbc
-from services.data_service import create_tables
+from services.data_loader import DataLoader
 
 class ResultsView:
-    """
-    Classe responsável por exibir os resultados da análise CK.
-    """
-
     @staticmethod
     def layout():
-        """
-        Retorna o layout que exibe as tabelas geradas após a análise,
-        com cada tabela dentro de um item de acordeão.
-        
-        :return: html.Div com o layout das tabelas.
-        """
-        tables = create_tables()  # Função que cria as tabelas a partir dos arquivos CSV
-
-        # Cria o acordeão para exibir cada tabela em um item
-        accordion_items = [
-            dbc.AccordionItem(
-                table,
-                title=file_name,  # Agora usa o nome descritivo fornecido por create_tables
-                className="accordion-item"
-            )
-            for file_name, table in tables
-        ]
+        # Inicializa as tabelas para gerar o conteúdo dinâmico dos dropdowns
+        data_loader = DataLoader()
+        table_names = data_loader.get_table_names()
 
         return html.Div([
             html.H2("Resultados da Análise CK", className="result-header"),
             dbc.Accordion(
-                accordion_items, 
-                start_collapsed=True,  # Inicia com todos os itens fechados
+                [dbc.AccordionItem(html.Div(f"Tabela: {name}"), title=name) for name in table_names],
+                start_collapsed=True,
                 always_open=True,
-                flush=False,  # Define se a borda ao redor do acordeão deve ser removida
+                flush=False,
                 className="table-accordion"
-            )
-        ], className="results-wrapper")
+            ),
+            html.Div(id='graph-controls', children=[
+                html.H4("Visualização de Gráficos"),
+                dcc.Dropdown(
+                    id='table-dropdown',
+                    options=[{'label': name, 'value': name} for name in table_names],
+                    placeholder="Selecione uma tabela"
+                ),
+                dcc.Dropdown(
+                    id='chart-type-dropdown',
+                    options=[
+                        {'label': 'Linha', 'value': 'line'},
+                        {'label': 'Barras', 'value': 'bar'},
+                        {'label': 'Box Plot', 'value': 'box'},
+                        {'label': 'Histograma', 'value': 'histogram'}
+                    ],
+                    placeholder="Selecione o tipo de gráfico"
+                ),
+                dcc.Dropdown(
+                    id='metric-dropdown',
+                    placeholder="Selecione uma métrica"
+                ),
+                dcc.Graph(id='metric-graph')
+            ], className="graph-controls")
+        ])

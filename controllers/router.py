@@ -8,6 +8,7 @@ from components.loginForm import LoginForm
 from components.content_LLM import Content_LLM
 from components.content_LLM_CK import Content_LLM_CK
 from services.auth_services import AuthService
+from controllers.results_controller import register_callbacks  # Importa a função de registro de callbacks
 
 def routes(app):
     content_page = Content(app)
@@ -16,6 +17,9 @@ def routes(app):
     feedback_page = FeedbackForm(app)
     results_page = ResultsView()
     login_page = LoginForm(app, AuthService())
+
+    # Registra os callbacks específicos de results_controller
+    register_callbacks(app)  # Registra os callbacks de gráfico
 
     @app.callback(
         Output('page-content', 'children'),
