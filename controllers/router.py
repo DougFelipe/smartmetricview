@@ -6,11 +6,13 @@ from components.feedback import FeedbackForm
 from components.results_view import ResultsView
 from components.loginForm import LoginForm
 from components.content_LLM import Content_LLM
+from components.content_LLM_CK import Content_LLM_CK
 from services.auth_services import AuthService
 
 def routes(app):
     content_page = Content(app)
     content_llm_page = Content_LLM(app)
+    content_llm_ck_page = Content_LLM_CK(app)
     feedback_page = FeedbackForm(app)
     results_page = ResultsView()
     login_page = LoginForm(app, AuthService())
@@ -29,6 +31,8 @@ def routes(app):
             return results_page.layout()
         elif pathname == '/llm':
             return content_llm_page()
+        elif pathname == '/llm_ck':
+            return content_llm_ck_page()
         elif pathname == '/':
             return content_page()
         elif pathname == '/login':

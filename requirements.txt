@@ -19,3 +19,12 @@ os-sys==0.2.0
 
 # Linter e checagem de estilo PEP8 (opcional para boas práticas)
 flake8==6.1.0
+
+# Langchain para integração com Groq
+langchain_groq
+
+# Core do Langchain para manipulação de prompts
+langchain_core
+
+# Biblioteca para carregar variáveis de ambiente
+python-dotenv
