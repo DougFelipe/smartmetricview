@@ -4,6 +4,8 @@ import os
 class DataLoader:
     def __init__(self, output_dir='output'):
         self.output_dir = output_dir
+        
+        # Dicionário de mapeamento para nomes descritivos
         self.tables = {
             'Classes': 'outputclass.csv',
             'Fields': 'outputfield.csv',
@@ -12,6 +14,7 @@ class DataLoader:
         }
 
     def get_table_names(self):
+        # Retorna uma lista dos nomes amigáveis das tabelas
         return list(self.tables.keys())
 
     def load_table(self, table_name):
@@ -21,5 +24,6 @@ class DataLoader:
         return pd.DataFrame()  # Retorna um DataFrame vazio se o arquivo não for encontrado
 
     def get_metrics(self, table_name):
+        # Retorna as colunas (métricas) disponíveis em uma tabela específica
         df = self.load_table(table_name)
         return df.columns.tolist()
