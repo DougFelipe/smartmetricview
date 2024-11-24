@@ -3,6 +3,7 @@ import dash_bootstrap_components as dbc
 from services.data_service import create_tables
 from services.data_loader import DataLoader
 
+
 class ResultsView:
     """
     Classe responsável por exibir os resultados da análise CK e a interface para visualização de gráficos.
@@ -12,7 +13,7 @@ class ResultsView:
     def layout():
         """
         Retorna o layout contendo as tabelas no acordeão e os controles de visualização de gráficos.
-        
+
         :return: html.Div com o layout completo.
         """
         tables = create_tables()  # Função que cria as tabelas a partir dos arquivos CSV
@@ -53,13 +54,13 @@ class ResultsView:
 
         return html.Div([
             html.H2("Resultados da Análise CK", className="result-header"),
-            
+
             # Acordeão com as tabelas
             dbc.Accordion(
-                accordion_items, 
-                start_collapsed=True,  
+                accordion_items,
+                start_collapsed=True,
                 always_open=True,
-                flush=False, 
+                flush=False,
                 className="table-accordion"
             ),
 
@@ -73,5 +74,5 @@ class ResultsView:
                 html.Label("Métrica"),
                 metric_dropdown,
                 html.Div(id="graph-container")  # Onde o gráfico será exibido
-            ], className="chart-controls")
+            ], className="chart-controls"),
         ], className="results-wrapper")

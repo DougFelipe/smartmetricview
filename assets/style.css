@@ -76,6 +76,7 @@ body {
     font-size: 1em;                 
 }
 
+
 #execute-button {
     background-color: #164194;        
     color: white;                    
@@ -121,6 +122,16 @@ body {
     font-size: 1em;
 }
 
+#download-button{
+    margin-left: 8px;
+}
+
+#export-tables-button{
+    margin-top: 8px
+ }
+
+#export-tables-button,
+#download-button,
 #execute-button-llm-ck,
 #execute-button-llm {
     background-color: #164194;
@@ -133,6 +144,8 @@ body {
     font-size: 1em;
 }
 
+#export-tables-button:hover,
+#download-button: hover,
 #execute-button-llm-ck:hover,
 #execute-button-llm:hover {
     background-color: #0095DB;

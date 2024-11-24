@@ -9,6 +9,9 @@ from components.content_LLM import Content_LLM
 from components.content_LLM_CK import Content_LLM_CK
 from services.auth_services import AuthService
 from controllers.results_controller import register_callbacks  # Importa a função de registro de callbacks
+import os
+from flask import Flask, send_from_directory
+
 
 def routes(app):
     content_page = Content(app)
@@ -20,6 +23,47 @@ def routes(app):
 
     # Registra os callbacks específicos de results_controller
     register_callbacks(app)  # Registra os callbacks de gráfico
+
+    # Define o caminho para o diretório de downloads
+    DOWNLOAD_DIRECTORY = os.getenv("DOWNLOAD_DIRECTORY")
+    if not os.path.exists(DOWNLOAD_DIRECTORY):
+        os.makedirs(DOWNLOAD_DIRECTORY)
+
+    @app.server.route('/download/<filename>')
+    def download_file(filename):
+        try:
+            # Verifica se o arquivo existe no diretório
+            file_path = os.path.join(DOWNLOAD_DIRECTORY, filename)
+            if not os.path.exists(file_path):
+                return f"Arquivo {filename} não encontrado.", 404
+
+            # Usa send_from_directory para enviar o arquivo
+            return send_from_directory(directory=DOWNLOAD_DIRECTORY, path=filename, as_attachment=True)
+
+        except Exception as e:
+            return f"Erro ao enviar o arquivo: {str(e)}", 500
+
+
+
+    # Caminho absoluto da pasta onde os arquivos estão armazenados
+    OUTPUT_FOLDER = os.path.join(os.getcwd(), "output")
+
+    @app.server.route('/downloadCSV/<filename>')
+    def export_csv(filename):
+        try:
+            # Verifica se o arquivo existe no diretório
+            file_path = os.path.join(OUTPUT_FOLDER, filename)
+            if not os.path.exists(file_path):
+                return abort(404, description=f"Arquivo {filename} não encontrado.")
+
+            # Usa send_from_directory para enviar o arquivo
+            return send_from_directory(directory=OUTPUT_FOLDER, path=filename, as_attachment=True)
+
+        except Exception as e:
+            # Loga o erro no console (para depuração) e retorna uma mensagem genérica ao usuário
+            print(f"Erro ao enviar o arquivo: {str(e)}")
+            return abort(500, description="Erro interno ao processar o arquivo.")
+
 
     @app.callback(
         Output('page-content', 'children'),
