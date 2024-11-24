@@ -1,5 +1,6 @@
 import csv
 from services.docker_service import run_ck_analysis
+from services.metrics_to_text_service import MetricsToTextConvert
 from dash.dependencies import Input, Output, State
 from dash.exceptions import PreventUpdate
 from dash import html, dcc
@@ -48,42 +49,16 @@ def register_callbacks(app):
             outputmethod = ler_csv_em_metrica('outputmethod.csv')
             outputvariable = ler_csv_em_metrica('outputvariable.csv')
 
-            # Descrição do projeto
-            descriptionProject = description
+            metrics_to_text = MetricsToTextConvert()
+            text_context = metrics_to_text.metrics_to_text_convert(
+                description_project=description,
+                outputclass=outputclass,
+                outputfield=outputfield,
+                outputmethod=outputmethod,
+                outputvariable=outputvariable
+            )
 
-            # Integra as métricas e a descrição do projeto em um único texto
-            text_context = f"Descrição do Projeto: {descriptionProject}\n\n\n"
-
-            # Adiciona as métricas por classe ao texto
-            text_context += "Métricas das Classes:\n"
-            for classe, metrics in outputclass.items():
-                text_context += f"\nClasse: {classe}\n"
-                for metrica, valor in metrics.items():
-                    if metrica != 'class':  # Exclui a coluna 'class' que contém o nome da classe
-                        text_context += f"  {metrica}: {valor}\n"
-
-            # Adiciona as outras métricas (fields, methods, variables)
-            text_context += "\nMétricas dos Campos (Fields):\n"
-            for classe, metrics in outputfield.items():
-                text_context += f"\nClasse: {classe}\n"
-                for metrica, valor in metrics.items():
-                    if metrica != 'class':
-                        text_context += f"  {metrica}: {valor}\n"
-
-            text_context += "\nMétricas dos Métodos (Methods):\n"
-            for classe, metrics in outputmethod.items():
-                text_context += f"\nClasse: {classe}\n"
-                for metrica, valor in metrics.items():
-                    if metrica != 'class':
-                        text_context += f"  {metrica}: {valor}\n"
-
-            text_context += "\nMétricas das Variáveis (Variables):\n"
-            for classe, metrics in outputvariable.items():
-                text_context += f"\nClasse: {classe}\n"
-                for metrica, valor in metrics.items():
-                    if metrica != 'class':
-                        text_context += f"  {metrica}: {valor}\n"
-
+            print(text_context)
             # Chama a função de análise LLM com o texto concatenado
             llm_result = perform_llm_ck_analysis(text_context)
 
