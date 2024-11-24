@@ -126,6 +126,11 @@ body {
     margin-left: 8px;
 }
 
+#export-tables-button{
+    margin-top: 8px
+ }
+
+#export-tables-button,
 #download-button,
 #execute-button-llm-ck,
 #execute-button-llm {
@@ -139,6 +144,7 @@ body {
     font-size: 1em;
 }
 
+#export-tables-button:hover,
 #download-button: hover,
 #execute-button-llm-ck:hover,
 #execute-button-llm:hover {
