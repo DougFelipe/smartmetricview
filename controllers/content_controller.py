@@ -31,5 +31,5 @@ def register_callbacks(app):
                 )
             else:
                 # Redireciona para a página de resultados
-                return dcc.Location(pathname='/results', id='redirect'), "Visualizar Resultados", True
+                return dcc.Location(pathname='/results', id='redirect'), "Visualizar Resultados", True,  {'display': 'inline-block'}
         raise PreventUpdate
