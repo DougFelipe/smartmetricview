@@ -7,7 +7,9 @@ from components.results_view import ResultsView
 from components.loginForm import LoginForm
 from components.content_LLM import Content_LLM
 from components.content_LLM_CK import Content_LLM_CK
+from components.registerForm import RegisterForm
 from services.auth_services import AuthService
+from services.user_services import UserService
 from controllers.results_controller import register_callbacks  # Importa a função de registro de callbacks
 import os
 from flask import Flask, send_from_directory
@@ -20,6 +22,8 @@ def routes(app):
     feedback_page = FeedbackForm(app)
     results_page = ResultsView()
     login_page = LoginForm(app, AuthService())
+    register_form = RegisterForm(app, UserService())
+    
 
     # Registra os callbacks específicos de results_controller
     register_callbacks(app)  # Registra os callbacks de gráfico
@@ -71,8 +75,8 @@ def routes(app):
     )
     def display_page(pathname):
         # Verifica se o usuário está autenticado
-        if not AuthService.is_authenticated() and pathname != '/login':
-            return login_page()  # Redireciona para login se não autenticado
+        if not AuthService.is_authenticated() and pathname not in ['/login', '/register']:
+            return login_page()
         if pathname == '/feedback':
             return feedback_page()
         elif pathname == '/results':
@@ -85,5 +89,7 @@ def routes(app):
             return content_page()
         elif pathname == '/login':
             return login_page()
+        elif pathname == '/register':
+            return register_form.layout()
         else:
             return html.H1("Página não encontrada", className='error')
