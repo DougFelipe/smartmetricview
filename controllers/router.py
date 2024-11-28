@@ -1,12 +1,12 @@
 # controllers/router.py
 from dash import html
 from dash.dependencies import Input, Output
-from components.content import Content
-from components.feedback import FeedbackForm
+from components.Content import Content
+from components.Feedback import FeedbackForm
 from components.results_view import ResultsView
 from components.loginForm import LoginForm
-from components.content_LLM import Content_LLM
-from components.content_LLM_CK import Content_LLM_CK
+from components.ContentLLM import ContentLLM
+from components.ContentLLMCK import ContentLLMCK
 from components.registerForm import RegisterForm
 from services.auth_services import AuthService
 from services.user_services import UserService
@@ -17,8 +17,8 @@ from flask import Flask, send_from_directory
 
 def routes(app):
     content_page = Content(app)
-    content_llm_page = Content_LLM(app)
-    content_llm_ck_page = Content_LLM_CK(app)
+    content_llm_page = ContentLLM(app)
+    content_llm_ck_page = ContentLLMCK(app)
     feedback_page = FeedbackForm(app)
     results_page = ResultsView()
     login_page = LoginForm(app, AuthService())

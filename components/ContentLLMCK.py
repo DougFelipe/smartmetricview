@@ -1,12 +1,15 @@
 from dash import html, dcc
 
-class Content_LLM_CK:
+class ContentLLMCK:
     def __init__(self, app):
         # Registrar callbacks em outro módulo
-        from controllers.content_llm_ck_controller import register_callbacks
-        from controllers.report_controller import register_callbacks_download
-        register_callbacks(app)
-        register_callbacks_download(app)  # Registrar os callbacks do download, caso haja um módulo separado para isso
+        from controllers.AnalysisLLMCKController import AnalysisLLMCKController
+        from controllers.ReportController import ReportController
+        controller_analysis = AnalysisLLMCKController()
+        controller_analysis.register_callbacks(app)
+
+        controller_report = ReportController()
+        controller_report.register_callbacks_download(app)  # Registrar os callbacks do download, caso haja um módulo separado para isso
 
     def __call__(self):
         return html.Div([

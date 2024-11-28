@@ -1,4 +1,4 @@
-# services/llm_service.py
+# services/LLMCKService.py
 
 from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv, find_dotenv
@@ -126,7 +126,11 @@ prompt = PromptTemplate.from_template(template=template)
 chat = ChatGroq(model="llama-3.1-8b-instant")
 chain = prompt | chat
 
-def perform_llm_ck_analysis(descripition):
-    """Executa a análise LLM no código fornecido."""
-    llm_result = chain.invoke(descripition).content  # Executa a análise LLM no código fornecido
-    return llm_result  # Retorna o resultado da análise LLM
+class LLMCKService:
+    def perform_llm_ck_analysis(self, description):
+        """Executa a análise LLM com base nas métricas CK geradas."""
+        try:
+            llm_result = chain.invoke(description).content
+            return llm_result
+        except Exception as e:
+            raise Exception(f"Erro ao realizar a análise LLM: {str(e)}")

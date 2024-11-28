@@ -6,9 +6,7 @@ class Navbar:
     """
 
     def __init__(self):
-        """
-        Inicializa a classe Navbar.
-        """
+      
         self.links = [
             {'name': 'Análise CK', 'path': '/'},
             {'name': 'Analise LLM + SOLID', 'path': '/llm'},
@@ -18,11 +16,7 @@ class Navbar:
         ]
 
     def __call__(self):
-        """
-        Retorna o layout da barra de navegação.
 
-        :return: html.Nav com links de navegação.
-        """
         return html.Nav(
             className="navbar",
             children=[

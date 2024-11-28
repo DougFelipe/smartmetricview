@@ -1,17 +1,17 @@
-# services/feedback_service.py
+# services/FeedbackService.py
 import os
+from exceptions.FeedbackSubmissionException import FeedbackSubmissionException
+
 
 class FeedbackService:
     def __init__(self):
         self.feedback_dir = os.path.join(os.getcwd(), 'feedback')
 
-        # Certifica-se de que o diretório de feedbacks existe
         if not os.path.exists(self.feedback_dir):
             os.makedirs(self.feedback_dir)
 
     def submit_feedback(self, username, feedback):
         try:
-            # Validação básica
             if not username:
                 username = "Anônimo"
 
@@ -21,5 +21,12 @@ class FeedbackService:
                 f.write(f"{feedback}\n\n")
 
             return "Obrigado pelo seu feedback!"
+
+        except FileNotFoundError as e:
+            raise FeedbackSubmissionException(f"Erro ao acessar o diretório para salvar o feedback: {str(e)}")
+
+        except PermissionError as e:
+            raise FeedbackSubmissionException(f"Erro de permissão ao tentar salvar o feedback: {str(e)}")
+
         except Exception as e:
-            return f"Erro ao salvar feedback: {str(e)}"
+            raise FeedbackSubmissionException(f"Erro desconhecido ao salvar feedback: {str(e)}")

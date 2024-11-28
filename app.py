@@ -1,8 +1,8 @@
 # app.py
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
-from components.header import Header
-from components.navbar import Navbar
+from components.Header import Header
+from components.Navbar import Navbar
 from controllers.router import routes
 from services.auth_services import AuthService
 from services.user_services import UserService

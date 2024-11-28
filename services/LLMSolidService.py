@@ -26,7 +26,12 @@ prompt = PromptTemplate.from_template(template=template)
 chat = ChatGroq(model="llama-3.1-8b-instant")
 chain = prompt | chat
 
-def perform_llm_analysis(code):
-    """Executa a análise LLM no código fornecido."""
-    llm_result = chain.invoke(code).content  # Executa a análise LLM no código fornecido
-    return llm_result  # Retorna o resultado da análise LLM
+class LLMSolidService:
+    def perform_llm_analysis(self, code):
+        """Executa a análise LLM com base nos padrões SOLID com o código fornecido."""
+        try:
+            llm_result = chain.invoke(code).content
+            return llm_result
+        except Exception as e:
+            raise Exception(f"Erro ao realizar a análise LLM: {str(e)}")
+

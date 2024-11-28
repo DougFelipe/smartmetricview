@@ -1,10 +1,11 @@
 from dash import html, dcc
 
-class Content_LLM:
+class ContentLLM:
     def __init__(self, app):
         # Registrar callbacks em outro módulo
-        from controllers.content_llm_controller import register_callbacks
-        register_callbacks(app)
+        from controllers.AnalysisLLMController import AnalysisLLMController
+        controller = AnalysisLLMController()
+        controller.register_callbacks(app)
 
     def __call__(self):
         return html.Div([

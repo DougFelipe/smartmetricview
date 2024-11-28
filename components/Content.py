@@ -4,10 +4,14 @@ from dash import html, dcc
 
 class Content:
     def __init__(self, app):
-        from controllers.content_controller import register_callbacks
-        from controllers.export_CSV_controller import register_callbacks_download_csv
-        register_callbacks(app)
-        register_callbacks_download_csv(app)
+        from controllers.ContentController import ContentController
+        from controllers.ExportCSVController import ExportCSVController
+
+        content_controller = ContentController()
+        content_controller.register_callbacks(app)
+
+        export_controller = ExportCSVController()
+        export_controller.register_callbacks_download_csv(app)
 
 
     def __call__(self):
