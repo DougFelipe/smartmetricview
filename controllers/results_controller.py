@@ -1,7 +1,7 @@
 from dash import Input, Output
 from dash import dcc, html
 import plotly.express as px
-from services.data_loader import DataLoader
+from services.DataLoader import DataLoader
 
 data_loader = DataLoader()
 

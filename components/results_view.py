@@ -2,7 +2,7 @@
 
 from dash import html, dcc
 import dash_bootstrap_components as dbc
-from services.data_loader import DataLoader
+from services.DataLoader import DataLoader
 from services.TableService import TableService
 
 class ResultsView:
