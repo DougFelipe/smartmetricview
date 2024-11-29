@@ -1,8 +1,9 @@
+# components/results_view.py
+
 from dash import html, dcc
 import dash_bootstrap_components as dbc
-from services.data_service import create_tables
 from services.data_loader import DataLoader
-
+from services.TableService import TableService
 
 class ResultsView:
     """
@@ -16,17 +17,21 @@ class ResultsView:
 
         :return: html.Div com o layout completo.
         """
-        tables = create_tables()  # Função que cria as tabelas a partir dos arquivos CSV
-        data_loader = DataLoader()  # Instância para carregar tabelas e métricas
+        # Instância do serviço de tabelas
+        table_service = TableService()
+        tables = table_service.create_tables()
+
+        # Instância do DataLoader para carregamento dinâmico de tabelas e métricas
+        data_loader = DataLoader()
 
         # Cria o acordeão para exibir cada tabela em um item
         accordion_items = [
             dbc.AccordionItem(
                 table,
-                title=file_name,  # Nome descritivo da tabela
+                title=friendly_name,  # Nome descritivo da tabela
                 className="accordion-item"
             )
-            for file_name, table in tables
+            for friendly_name, table in tables
         ]
 
         # Dropdowns para seleção de tabela, tipo de gráfico e métrica
